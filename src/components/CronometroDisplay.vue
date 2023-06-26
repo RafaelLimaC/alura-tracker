@@ -1,6 +1,6 @@
 <template>
     <secton>
-        <strong>
+        <strong class="display">
             {{ tempoDecorrido }}
         </strong>
     </secton>
@@ -24,3 +24,10 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+.display {
+    color: var(--texto-primario);
+    
+}
+</style>

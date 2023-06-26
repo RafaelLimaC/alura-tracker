@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box formulario">
         <div class="columns">
             <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
                 <input type="text" class="input" placeholder="Qual tarefa você deseja inciar?" v-model="descricaoTarefa">
@@ -17,6 +17,7 @@ import TemporizadorCronometro from './TemporizadorCronometro.vue'
 
 export default defineComponent({
     nome: 'FormularioTarefa',
+    emits: ['aoSalvarTarefa'],
     components: {
         TemporizadorCronometro
     },
@@ -27,10 +28,19 @@ export default defineComponent({
     },
     methods: {
         finalizarTarefa (tempoDecorrido: number) : void {
-            console.log("Tempo da tarefa: ", tempoDecorrido)
-            console.log("Descrição da tarefa: ", this.descricaoTarefa)
+            this.$emit('aoSalvarTarefa', {
+                duracaoEmSegundos: tempoDecorrido,
+                descricao: this.descricaoTarefa
+            })
             this.descricaoTarefa = ''
         }
     }
 })
 </script>
+
+<style>
+.formulario {
+    color: var(--texto-primario);
+    background-color: var(--bg-primario);
+}
+</style>
